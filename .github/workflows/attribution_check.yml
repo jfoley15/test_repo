@@ -13,3 +13,4 @@ jobs:
         uses: andstor/file-existence-action@v2
         with:
           files: "ATTRIBUTION.md"
+          fail: true
