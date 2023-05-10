@@ -1,5 +1,5 @@
 name: check-for-attribution
-run-name: Checking ${{ github.action }}'s push for suitable attribution
+run-name: Checking ${{ github.event.head_commit.author.name }}'s push for suitable attribution
 on: [push]
 jobs:
   check-for-file:
@@ -14,7 +14,7 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: "AUTHORS.txt"
+          files: "*/AUTHORS.txt"
           fail: true
 
       - name: Report Status
