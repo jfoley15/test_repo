@@ -5,6 +5,8 @@ jobs:
   check-for-file:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "${{ toJson(github) }}"
+      
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -21,7 +23,8 @@ jobs:
         with:
           status: ${{ job.status }}
           notify_when: 'failure'
-          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}> due to commit by person"
-
+          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|Flutter shared DS repository> due to commit by ${{ github.event.head_commit.author.name }}"
+          footer: ''
+          notification_title: ''
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.ACTION_MONITORING_SLACK }}
