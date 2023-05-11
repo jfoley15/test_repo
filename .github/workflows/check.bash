@@ -2,8 +2,8 @@
 
 set -e
 
-repo_count=$(find . -type d -maxdepth 1 2>/dev/null | grep -c -v '^.$')
-readme_count=$(find . -type f -name 'README.md' -maxdepth 2 2>/dev/null | wc -l)
+repo_count=$(find ./* -maxdepth 0 -type d | wc -l)
+readme_count=$(find ./*/AUTHORS.txt -maxdepth 0 -type d | wc -l)
 echo readme_count is $readme_count
 echo repo_count is $repo_count
 status="success"
