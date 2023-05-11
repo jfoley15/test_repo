@@ -15,6 +15,7 @@ jobs:
         run: ./.github/workflows/check.bash
 
       - name: Report Status
+        run: echo "${{ steps.check_files.outputs }}"
         if: ${{ steps.check_files.outputs.status == 'failure' }}
         uses: ravsamhq/notify-slack-action@v1
         with:
