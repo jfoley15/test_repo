@@ -12,13 +12,10 @@ jobs:
 
       - name: Check file existence
         id: check_files
-        uses: andstor/file-existence-action@v2
-        with:
-          files: "*/AUTHORS.txt, AUTHORS.txt"
-          fail: true
+        run: ./.github/workflows/check.bash
 
       - name: Report Status
-        if: always()
+        if: ${{ steps.check_files.outputs.status == 'failure' }}
         uses: ravsamhq/notify-slack-action@v1
         with:
           status: ${{ job.status }}
